@@ -39,7 +39,27 @@ yumrepo {
   
 }
 
+
+define installCPAN () {
+  exec { "cpanLoad${title}":
+    command => "/usr/local/bin/cpanm $name",
+    path    => "/usr/bin:/usr/sbin:/bin:/sbin",
+    unless  => "perl -I.cpan -M$title -e 1",
+    timeout => 600,
+    require => Exec["initCPAN"],
+  }
+}
+
+exec { "initCPAN":
+  command =>  "curl -L http://cpanmin.us | perl - --self-upgrade",
+  path    => "/usr/bin:/usr/sbin:/bin:/sbin",
+  creates  => "/usr/local/bin/cpanm"
+}
+
+
 package {
+  'perl-CPANPLUS': ensure => 'installed';
+  'perl-ExtUtils-MakeMaker': ensure => 'installed';
   'perl-AnyEvent': ensure => 'installed';
   'perl-AnyEvent-HTTP': ensure => 'installed';
 
@@ -48,3 +68,6 @@ package {
   'npm': ensure => 'installed';
 
 }
+
+# E.g.
+installCPAN { "AnyEvent::HTTPD": }
