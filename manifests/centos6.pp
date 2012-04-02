@@ -59,7 +59,7 @@ exec { "initCPAN":
 
 define installNPM () {
   exec { "npmLoad${title}":
-    command => "/usr/bin/npm install $name",
+    command => "/usr/bin/npm install $name -g",
     path    => "/usr/bin:/usr/sbin:/bin:/sbin",
     unless  => "node -e \"var pkg = require( '$name' );\"",
     timeout => 600,
