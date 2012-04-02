@@ -57,6 +57,16 @@ exec { "initCPAN":
 }
 
 
+define installNPM () {
+  exec { "npmLoad${title}":
+    command => "/usr/bin/npm install $name",
+    path    => "/usr/bin:/usr/sbin:/bin:/sbin",
+    unless  => "node -e \"var pkg = require( '$name' );\"",
+    timeout => 600,
+  }
+}
+
+
 package {
   'perl-CPANPLUS': ensure => 'installed';
   'perl-ExtUtils-MakeMaker': ensure => 'installed';
@@ -67,7 +77,18 @@ package {
   'nodejs-compat-symlinks': ensure => 'installed';
   'npm': ensure => 'installed';
 
+  'mysql': ensure => 'installed';
+  'mysql-server': ensure => 'installed';
+  'perl-DBD-MySQL': ensure => 'installed';
 }
 
 # E.g.
 installCPAN { "AnyEvent::HTTPD": }
+installCPAN { "AnyEvent::DBI": }
+
+
+service {
+  'mysqld': ensure => 'running';
+}
+
+installNPM { "mysql": }
