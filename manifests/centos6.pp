@@ -72,6 +72,7 @@ package {
   'perl-ExtUtils-MakeMaker': ensure => 'installed';
   'perl-AnyEvent': ensure => 'installed';
   'perl-AnyEvent-HTTP': ensure => 'installed';
+  'perl-AnyEvent-EV': ensure => 'installed';
 
 
   'nodejs-compat-symlinks': ensure => 'installed';
@@ -80,11 +81,15 @@ package {
   'mysql': ensure => 'installed';
   'mysql-server': ensure => 'installed';
   'perl-DBD-MySQL': ensure => 'installed';
+  
+  'telnet': ensure => 'installed';
+  'vim-minimal': ensure => 'installed';
 }
 
 # E.g.
 installCPAN { "AnyEvent::HTTPD": }
 installCPAN { "AnyEvent::DBI": }
+installCPAN { "AnyEvent::AIO": }
 
 
 service {
