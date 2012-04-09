@@ -73,6 +73,7 @@ package {
   'perl-AnyEvent': ensure => 'installed';
   'perl-AnyEvent-HTTP': ensure => 'installed';
   'perl-AnyEvent-EV': ensure => 'installed';
+  'perl-Coro': ensure => 'installed';
 
 
   'nodejs-compat-symlinks': ensure => 'installed';
