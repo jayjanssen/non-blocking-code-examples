@@ -98,3 +98,4 @@ service {
 }
 
 installNPM { "mysql": }
+installNPM { "async": }
