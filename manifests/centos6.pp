@@ -85,6 +85,7 @@ package {
   
   'telnet': ensure => 'installed';
   'vim-minimal': ensure => 'installed';
+  'screen': ensure => 'installed';
 }
 
 # E.g.
