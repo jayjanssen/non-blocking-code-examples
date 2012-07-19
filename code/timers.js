@@ -7,3 +7,4 @@ setTimeout( function() {
     clearInterval( intervalID );
 }, 5000 );
 
+console.log( "Timers started" );

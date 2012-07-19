@@ -15,4 +15,6 @@ my $t2 = AnyEvent->timer( after => 1, interval => 1, cb => sub {
     print "1 second passed\n"; 
 });
 
+print "Timers started\n";
+
 $cv->wait;
